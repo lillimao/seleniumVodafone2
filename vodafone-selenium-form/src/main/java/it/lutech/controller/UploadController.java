@@ -210,7 +210,7 @@ private WebDriver driver;
 			
 			excelUtils.scriviValore(creaCaso(), i+2, 18);
 		}
-		driver.quit();
+//		driver.quit();
 	}
 
 	public String creaCaso(){

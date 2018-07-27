@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage {
 	
-	public String idCaso = "prova"; //TODO
+	public String idCaso = "00113160"; //TODO
 
 	//** ELEMENTI **//
 

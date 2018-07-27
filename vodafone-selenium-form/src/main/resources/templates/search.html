@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<body>
+<script src="webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" /> 
+<body style="margin-left: 2%; margin-top: 2%; margin-right: 2%"; >
 
 <h1>Ricerca caso</h1>
 <div th:if="${message}">
     <h2 th:text="${message}"/>
 </div>
-<form method="POST" action="/search" enctype="multipart/form-data">
+<!--<form method="POST" action="/search" enctype="multipart/form-data">
     <input type="text" name="caseId" /><br/><br/>
     <input type="submit" value="Submit" />
+</form>-->
+
+
+<form method="POST" action="/search" enctype="multipart/form-data" style="margin-top: 4%;" >
+	<div class="form-group">
+		<input type="text" class="form-control" id="email_id" name="caseId" placeholder="Numero Caso">
+	</div>
+	
+	<div class="form-group"> <!-- Submit button !-->
+		<button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+	</div>	
 </form>
 
 </body>

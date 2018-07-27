@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<body>
+<script src="webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" /> 
+<body style="margin-top: 1%; margin-left: 1%; margin-right: 1%;">
 
 <h1>Dettagli caso</h1>
-<div th:if="${message}">
-    <h2 th:text="${message}"/>
-</div>
-<div
-th:text="${prova}">
-</div>
+<table class="table" style="margin-top: 3%">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Numero caso</th>
+      <td th:text="${numeroCaso}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Servizio</th>
+      <td th:text="${servizio}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Stato</th>
+      <td th:text="${stato}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Descrizione</th>
+      <td th:text="${descrizione}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Nome Referente</th>
+      <td th:text="${nomeRef}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Cognome Referente</th>
+      <td th:text="${cognomeRef}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Commento 1</th>
+      <td th:text="${commento1}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Commento 2</th>
+      <td th:text="${commento2}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Commento 3</th>
+      <td th:text="${commento3}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Commento 4</th>
+      <td th:text="${commento4}"></td>
+    </tr>
+    <tr>
+      <th scope="row">Commento 5</th>
+      <td th:text="${commento5}"></td>
+    </tr>
+  </tbody>
+</table>
 
 </body>
 </html>

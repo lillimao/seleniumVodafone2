@@ -10,7 +10,7 @@ public class CasoCreatoPage {
 //	@FindBy(className="pageDescription")
 //	private WebElement numeroCaso;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id43")
+	@FindBy(xpath="/html/body/div/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[1]/td[1]")
 	private WebElement numeroCaso;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id45")
@@ -22,13 +22,13 @@ public class CasoCreatoPage {
 	@FindBy(id="")    //TODO
 	private WebElement consistenza;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id53")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[3]/td[2]")
 	private WebElement servizio;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id56")
 	private WebElement codiceChiusura;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id61")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[6]/td[1]")
 	private WebElement stato;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id44")
@@ -52,7 +52,7 @@ public class CasoCreatoPage {
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id62")
 	private WebElement causaEffettiva;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id71")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[2]/div[2]/table/tbody/tr[1]/td")
 	private WebElement descrizione;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id72")
@@ -61,10 +61,10 @@ public class CasoCreatoPage {
 	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id73")
 	private WebElement commento;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id74:j_id75")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[3]/div[2]/table/tbody/tr[1]/td[1]")
 	private WebElement cognomeRef;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id74:j_id77")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[3]/div[2]/table/tbody/tr[2]/td[1]")
 	private WebElement nomeRef;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id74:j_id76")
@@ -73,16 +73,16 @@ public class CasoCreatoPage {
 	@FindBy(id="j_id0:j_id23:j_id39:j_id74:j_id78")
 	private WebElement telRef;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[1]")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]")
 	private WebElement commento1;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[2]")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[2]/td[1]")
 	private WebElement commento2;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[3]")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[3]/td[1]")
 	private WebElement commento3;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[4]")
+	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[4]/td[1]")
 	private WebElement commento4;
 	
 	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[3]/span/div/div/div/div/div[2]/table/tbody/tr[5]")
@@ -101,6 +101,98 @@ public class CasoCreatoPage {
 		}
 		return "";
 	}
+	
+	public String servizio(){
+		try {
+			return servizio.getText();
+		} catch (Exception e) {
+			System.out.println("Campo 'servizio' non presente");
+			return "";
+		}
+	}
+	
+	public String stato(){
+		try {
+			return stato.getText();
+		} catch (Exception e) {
+			System.out.println("Campo 'stato' non presente");
+			return "";
+		}
+	}
+	
+	public String descrizione(){
+		try {
+			return descrizione.getText();
+		} catch (Exception e) {
+			System.out.println("Campo 'descrizione' non presente");
+			return "";
+		}
+	}
+	
+	public String nomeReferente(){
+		try {
+			return nomeRef.getText();
+		} catch (Exception e) {
+			System.out.println("Campo 'nome referente' non presente");
+			return "";
+		}
+	}
+	
+	public String cognomeReferente(){
+		try {
+			return cognomeRef.getText();
+		} catch (Exception e) {
+			System.out.println("Campo 'cognome referente' non presente");
+			return "";
+		}
+	}
+	
+	public String commento1(){
+		try {
+			return commento1.getText();
+		} catch (Exception e) {
+			System.out.println("commento1 non presente");
+			return "";
+		}
+	}
+	
+	public String commento2(){
+		try {
+			return commento2.getText();
+		} catch (Exception e) {
+			System.out.println("commento2 non presente");
+			return "";
+		}
+	}
+	
+	public String commento3(){
+		try {
+			return commento3.getText();
+		} catch (Exception e) {
+			System.out.println("commento3 non presente");
+			return "";
+		}
+	}
+	
+	public String commento4(){
+		try {
+			return commento4.getText();
+		} catch (Exception e) {
+			System.out.println("commento4 non presente");
+			return "";
+		}
+	}
+	
+	public String commento5(){
+		try {
+			return commento5.getText();
+		} catch (Exception e) {
+			System.out.println("commento5 non presente");
+			return "";
+		}
+	}
+	
+
 	
 	
 	

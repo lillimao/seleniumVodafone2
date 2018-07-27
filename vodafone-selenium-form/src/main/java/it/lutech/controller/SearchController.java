@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import it.lutech.pages.CasoCreatoPage;
 import it.lutech.pages.HomePage;
 import it.lutech.pages.LoginPage;
 import it.lutech.utils.DriverUtils;
@@ -25,6 +26,8 @@ import java.nio.file.Paths;
 public class SearchController {
 	
 	private WebDriver driver;
+	
+	private CasoCreatoPage ccp;
 
     @GetMapping("/search")
     public String index() {
@@ -39,7 +42,23 @@ public class SearchController {
     	}
     	login();
     	cercaCaso(caseId);
-    	model.addAttribute("prova", "ciao");
+    	ccp = PageFactory.initElements(driver, CasoCreatoPage.class);
+    	if(ccp.numeroCaso().equals("")){
+    		redirectAttributes.addFlashAttribute("message", "Numero caso non trovato");
+    		return "redirect:uploadStatus";
+    	}
+    	model.addAttribute("numeroCaso", ccp.numeroCaso());
+    	model.addAttribute("servizio", ccp.servizio());
+    	model.addAttribute("stato", ccp.stato());
+    	model.addAttribute("descrizione", ccp.descrizione());
+    	model.addAttribute("nomeRef", ccp.nomeReferente());
+    	model.addAttribute("cognomeRef", ccp.cognomeReferente());
+    	model.addAttribute("commento1", ccp.commento1());
+    	model.addAttribute("commento2", ccp.commento2());
+    	model.addAttribute("commento3", ccp.commento3());
+    	model.addAttribute("commento4", ccp.commento4());
+    	model.addAttribute("commento5", ccp.commento5());
+//    	driver.close();
     	return "/createdCase";
     }
     
