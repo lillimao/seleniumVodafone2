@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" /> 
+<script src="webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<body style="background:aliceblue;">
+<div class="container col">
+<br>
+<h1>Upload file Excel</h1>
+
+
+
+<!--<link rel="stylesheet" th:href="@{/css/buttons.css}" href="../css/buttons.css" /> -->
+	
+<form method="POST" action="/upload" enctype="multipart/form-data"> <br/>
+	
+	<!--<div class="custom-file">
+  		<input type="file" name="file" class="custom-file-input" id="customFile" >
+  		<label class="custom-file-label" for="customFile">Scegli File</label>
+	</div>-->
+     <input type="file" name="file" id="scegliFile" style="border-width: medium" class="btn btn-outline-secondary"/><br/><br/>
+     <input type="submit" value="Submit" id="submit" style="border-width: medium" class="btn btn-outline-secondary"/>   
+</form>
+</div>
+</body>
+
+</html>

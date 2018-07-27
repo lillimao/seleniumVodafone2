@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>vodafone-selenium-form</groupId>
+  <artifactId>vodafone-selenium-form</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>vodafone-selenium-form</name>
+  <packaging>jar</packaging>
+  
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+   </parent>
+
+
+ <properties>
+ 		<compiler.version>1.8</compiler.version>
+        <selenium.version>3.13.0</selenium.version>
+        <testng.version>6.9.10</testng.version>
+        <junit.version>4.11</junit.version>
+        <java.version>1.8</java.version>
+        <skip.it>true</skip.it>
+ </properties>
+ 
+<build>
+        <!--<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${compiler.version}</source>
+                    <target>${compiler.version}</target>
+                </configuration>
+            </plugin>
+            <plugin> 
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>-->
+        <plugins>
+            <!-- Package as an executable jar/war -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+
+          <execution>
+
+            <id>pre-integration-test</id>
+
+            <goals>
+
+              <goal>start</goal>
+
+            </goals>
+
+            <configuration>
+
+              <skip>${skip.it}</skip>
+
+            </configuration>
+
+          </execution>
+
+          <execution>
+
+            <id>post-integration-test</id>
+
+            <goals>
+
+              <goal>stop</goal>
+
+            </goals>
+
+            <configuration>
+
+              <skip>${skip.it}</skip>
+
+            </configuration>
+
+          </execution>
+
+        </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+ <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>  <!--Java API To Access Microsoft Format Files-->
+            <artifactId>poi</artifactId>
+            <version>3.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>  <!--Java API To Access Microsoft Format Files-->
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.8</version>
+        </dependency>
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+        <!-- hot swapping, disable cache for template, enable live reload -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+  <groupId>org.webjars</groupId>
+  <artifactId>bootstrap</artifactId>
+  <version>4.1.1</version>
+</dependency>
+    </dependencies>
+    
+    </project>
+    
+    

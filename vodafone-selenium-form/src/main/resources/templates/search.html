@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Ricerca caso</h1>
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+<form method="POST" action="/search" enctype="multipart/form-data">
+    <input type="text" name="caseId" /><br/><br/>
+    <input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>
