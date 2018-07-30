@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" /> 
+<body style="margin-top: 1%; margin-left: 1%; margin-right: 1%;">
+
+<h1>Casi Creati</h1>
+
+<table class="table" style="margin-top: 3%">
+  <thead>
+  </thead>
+  <tbody>
+  <tr>
+  <td><b>Numero Caso</b></td>
+  <td>Problema</td>
+  <td>Orario reperibilità</td>
+  <td>ID circuito</td>
+  <td>Ticket cliente</td>
+  <td>Commento</td>
+  <td>Reperibilità festivi</td>
+  <td>Nome referente 24h</td>
+  <td>Cognome referente 24h</td>
+  <td>Email referente 24h</td>
+  <td>Telefono referente 24h</td>
+  <td>Nome referente</td>
+  <td>Cognome referente</td>
+  <td>Email referente</td>
+  <td>Telefono referente</td>
+  <td>File upload</td>
+  </tr>
+  <script type="text/javascript">
+  function makeAppear(){
+		  document.getElementsById("ciccio").style.display = "";
+  }
+  </script>
+   <tr th:each="map : ${hmapAll.entrySet()}">
+         <td><a href="#" onClick="makeAppear()"> <span th:text="${map.value.numCaso}"></span></a> </td>
+         <td> <span id="ciccio" style="display:none;" th:text="${map.value.problemaS}"></span> </td>
+         <td> <span id="ciccio" style="display:none;" th:text="${map.value.orarioReperibilitaS}"></span> </td>
+     	 <td> <span style="display:none;" th:text="${map.value.idCircuitoS}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.ticketClienteS}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.commentoS}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.reperibilitaFestiviS}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.nomeReferente24S}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.cognomeReferente24S}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.emailReferente24S}"></span> </td>
+         <td> <span style="display:none;" th:text="${map.value.telefonoReferente24S}"></span> </td>
+         <td> <span th:text="${map.value.nomeReferenteS}"></span> </td>
+         <td> <span th:text="${map.value.cognomeReferenteS}"></span> </td>
+         <td> <span th:text="${map.value.emailReferenteS}"></span> </td>
+         <td> <span th:text="${map.value.telefonoReferenteS}"></span> </td>
+         <td> <span th:text="${map.value.scegliFileS}"></span> </td>
+</tr> 
+  </tbody>
+</table>
+
+</body>
+</html>

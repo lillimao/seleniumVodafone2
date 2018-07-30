@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,27 +25,33 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
 public class UploadController {
 
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "F://temp//"; //TODO
-    
-private WebDriver driver;
-	
+	//Save the uploaded file to this folder
+	private static String UPLOADED_FOLDER = "F://temp//"; //TODO
+
+	private WebDriver driver;
+
 	private ExcelUtils excelUtils;
 	
+	private Map<String, Map<String, String>> hmapAll = new HashMap<String, Map<String, String>>(); 
+	
 	private String servizioS;
-	
+
 	private String consistenzaS;
-	
+
 	private String sedeS;
-	
+
 	private String problemaS; 
-	
+
 	private String orarioReperibilitaS; 
 	
 	private String reperibilitaFestiviS; 
@@ -86,7 +93,7 @@ private WebDriver driver;
     
     @PostMapping("/upload") // //new annotation since 4.3
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+                                   RedirectAttributes redirectAttributes, Model model) {
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Selezionare un file, per favore");
@@ -98,8 +105,14 @@ private WebDriver driver;
         	excelUtils = new ExcelUtils();
         	excelUtils.creaWorkbook(convert(file));
         	login();
-        	casiMultipli();
+        	casiMultipli(model);
         	
+//        	model.addAttribute("pippo", "ciao");
+//        	Map <String, Map <String, String>> hmapCaso = new HashMap<String, Map <String, String>>();
+//        	Map <String, String> hmapCaso2 = new HashMap<String, String>();
+//        	hmapCaso2.put("gigi", "cremeria");
+//        	hmapCaso.put("lalla", hmapCaso2);
+//        	model.addAttribute("hmapCaso",hmapCaso);
         	
 //            // Get the file and save it somewhere
 //            byte[] bytes = file.getBytes();
@@ -112,8 +125,8 @@ private WebDriver driver;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        redirectAttributes.addFlashAttribute("message", "Upload terminato");
-        return "redirect:/uploadStatus";
+//        redirectAttributes.addFlashAttribute("message", "Upload terminato");
+        return "/createdCases";
     }
     
     public void login(){
@@ -128,8 +141,7 @@ private WebDriver driver;
 		
 	}
     
-    public void casiMultipli(){
-		excelUtils = new ExcelUtils();
+    public void casiMultipli(Model model){
 		driver = DriverUtils.getDriver();
 		int numeroRighe = excelUtils.numeroRighe();
 		for(int i = 0; i < numeroRighe; i++){
@@ -209,12 +221,15 @@ private WebDriver driver;
 //			creaCaso();
 			
 			excelUtils.scriviValore(creaCaso(), i+2, 18);
+			
 		}
+		model.addAttribute("hmapAll", hmapAll);
 //		driver.quit();
 	}
 
 	public String creaCaso(){
-		String numCaso;
+		String numCaso = "";
+		Map<String, String> hmapSingle = null;
 		try {
 			Thread.sleep(5000);
 		} catch (Exception e) {
@@ -281,7 +296,8 @@ private WebDriver driver;
 			}
 			fp.clickUploadFile();
 //			fp.clickConfermaInserimento();  
-			numCaso = ccp.numeroCaso();
+//			numCaso = ccp.numeroCaso();
+			numCaso = ""+Math.random();
 			if(numCaso.equals("")){
 				JavascriptExecutor js = (JavascriptExecutor)driver;	
 				js.executeScript("alert('Il caso non è stato generato');");
@@ -293,6 +309,27 @@ private WebDriver driver;
 				driver.switchTo().alert().accept();//TODO togliere se si vuole che si blocchi dopo l'errore
 				return "";
 			}
+			hmapSingle = new HashMap<String, String>(); 
+			hmapSingle.put("problemaS", problemaS);
+//			hmapSingle.put("consistenzaS", consistenzaS);
+//			hmapSingle.put("sedeS", sedeS);
+			hmapSingle.put("orarioReperibilitaS", orarioReperibilitaS);
+			hmapSingle.put("reperibilitaFestiviS", reperibilitaFestiviS);
+			hmapSingle.put("idCircuitoS", idCircuitoS);
+			hmapSingle.put("ticketClienteS", ticketClienteS);
+			hmapSingle.put("commentoS", commentoS);
+			hmapSingle.put("nomeReferente24S", nomeReferente24S);
+			hmapSingle.put("cognomeReferente24S", cognomeReferente24S);
+			hmapSingle.put("emailReferente24S", emailReferente24S);
+			hmapSingle.put("telefonoReferente24S", telefonoReferente24S);
+			hmapSingle.put("nomeReferenteS", nomeReferenteS);
+			hmapSingle.put("cognomeReferenteS", cognomeReferenteS);
+			hmapSingle.put("emailReferenteS", emailReferenteS);
+			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
+			hmapSingle.put("scegliFileS", scegliFileS);
+			hmapSingle.put("numCaso", numCaso);
+			hmapAll.put(numCaso, hmapSingle);
+			
 			return numCaso;
 /******/	case "DWDM":
 			fp.selezionaServizio(servizioS);
@@ -340,7 +377,8 @@ private WebDriver driver;
 			}
 			fp.uploadFile(scegliFileS);
 //			fp.clickConfermaInserimento(); 
-			numCaso = ccp.numeroCaso();
+//			numCaso = ccp.numeroCaso();
+			numCaso = ""+Math.random();
 			if(numCaso.equals("")){
 				JavascriptExecutor js = (JavascriptExecutor)driver;	
 				js.executeScript("alert('Il caso non è stato generato');");
@@ -352,6 +390,26 @@ private WebDriver driver;
 				driver.switchTo().alert().accept();//TODO togliere se si vuole che si blocchi dopo l'errore
 				return "";
 			}
+			hmapSingle = new HashMap<String, String>(); 
+			hmapSingle.put("problemaS", problemaS);
+//			hmapSingle.put("consistenzaS", consistenzaS);
+//			hmapSingle.put("sedeS", sedeS);
+			hmapSingle.put("orarioReperibilitaS", orarioReperibilitaS);
+			hmapSingle.put("reperibilitaFestiviS", reperibilitaFestiviS);
+			hmapSingle.put("idCircuitoS", idCircuitoS);
+			hmapSingle.put("ticketClienteS", ticketClienteS);
+			hmapSingle.put("commentoS", commentoS);
+			hmapSingle.put("nomeReferente24S", nomeReferente24S);
+			hmapSingle.put("cognomeReferente24S", cognomeReferente24S);
+			hmapSingle.put("emailReferente24S", emailReferente24S);
+			hmapSingle.put("telefonoReferente24S", telefonoReferente24S);
+			hmapSingle.put("nomeReferenteS", nomeReferenteS);
+			hmapSingle.put("cognomeReferenteS", cognomeReferenteS);
+			hmapSingle.put("emailReferenteS", emailReferenteS);
+			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
+			hmapSingle.put("scegliFileS", scegliFileS);
+			hmapSingle.put("numCaso", numCaso);
+			hmapAll.put(numCaso, hmapSingle);
 			return numCaso;
 /******/	case "SDH/WDM - Punto Punto":
 			fp.selezionaServizio(servizioS);
@@ -375,7 +433,7 @@ private WebDriver driver;
 			
 			Set<String>otherWindows = driver.getWindowHandles();//per gestire il popup
 			Iterator<String> iterator = otherWindows.iterator();//per gestire il popup
-			while(iterator.hasNext()){//per entrare nel popup
+			while(iterator.hasNext()){//per entrare nel modelpopup
 				String secondWindow = iterator.next();
 				if(!mainWindow.equalsIgnoreCase(secondWindow)){//dentro il popup
 					driver.switchTo().window(secondWindow);
@@ -426,7 +484,8 @@ private WebDriver driver;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			numCaso = ccp.numeroCaso();
+//			numCaso = ccp.numeroCaso();
+			numCaso = ""+Math.random();
 			if(numCaso.equals("")){
 				JavascriptExecutor js = (JavascriptExecutor)driver;	
 				js.executeScript("alert('Il caso non è stato generato');");
@@ -438,6 +497,26 @@ private WebDriver driver;
 				driver.switchTo().alert().accept(); //TODO togliere se si vuole che si blocchi dopo l'errore
 				return "";
 			}
+			hmapSingle = new HashMap<String, String>(); 
+			hmapSingle.put("problemaS", problemaS);
+			hmapSingle.put("consistenzaS", consistenzaS);
+			hmapSingle.put("sedeS", sedeS);
+			hmapSingle.put("orarioReperibilitaS", orarioReperibilitaS);
+			hmapSingle.put("reperibilitaFestiviS", reperibilitaFestiviS);
+			hmapSingle.put("idCircuitoS", idCircuitoS);
+			hmapSingle.put("ticketClienteS", ticketClienteS);
+			hmapSingle.put("commentoS", commentoS);
+			hmapSingle.put("nomeReferente24S", nomeReferente24S);
+			hmapSingle.put("cognomeReferente24S", cognomeReferente24S);
+			hmapSingle.put("emailReferente24S", emailReferente24S);
+			hmapSingle.put("telefonoReferente24S", telefonoReferente24S);
+			hmapSingle.put("nomeReferenteS", nomeReferenteS);
+			hmapSingle.put("cognomeReferenteS", cognomeReferenteS);
+			hmapSingle.put("emailReferenteS", emailReferenteS);
+			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
+			hmapSingle.put("scegliFileS", scegliFileS);
+			hmapSingle.put("numCaso", numCaso);
+			hmapAll.put(numCaso, hmapSingle);
 			return numCaso;
 		}
 

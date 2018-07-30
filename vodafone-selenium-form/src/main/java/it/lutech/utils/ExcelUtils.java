@@ -73,7 +73,7 @@ public class ExcelUtils {
 	
 	public int numeroRighe(){
 		int numeroRigheCompilate = 0;
-		int numeroTotRighe = creaWorkbook().getSheetAt(0).getLastRowNum(); //TODO modificare per usare con app
+		int numeroTotRighe = workbook.getSheetAt(0).getLastRowNum(); 
 		DataFormatter dataFormatter = new DataFormatter();
 		for(int i = 2; i <= numeroTotRighe; i++){
 			Cell cell;

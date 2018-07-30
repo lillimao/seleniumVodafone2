@@ -22,6 +22,25 @@
         <skip.it>true</skip.it>
  </properties>
  
+ <profiles>
+ 	<profile>
+ 		<id>local</id>
+ 		<properties>
+ 		<file.upload.dir>/home/lisa/git/vodafoneSelenium/vodafone-selenium-form/</file.upload.dir>
+ 		</properties>
+ 	</profile>
+ 	
+ 	<profile>
+ 		<id>dev</id>
+ 		<properties>
+ 		<file.upload.dir>/home/</file.upload.dir>
+ 		</properties>
+ 	</profile>
+ 
+ 
+ </profiles>
+ 
+ 
 <build>
         <!--<plugins>
             <plugin>
@@ -48,6 +67,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                <profiles>
+                	<profile>local</profile>
+                </profiles>
+                </configuration>
                 <executions>
 
           <execution>
