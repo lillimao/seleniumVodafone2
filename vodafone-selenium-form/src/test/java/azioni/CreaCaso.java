@@ -7,13 +7,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 import it.lutech.pages.CasoCreatoPage;
 import it.lutech.pages.FormPage;
+import it.lutech.utils.AppProperties;
 import it.lutech.utils.DriverUtils;
 import it.lutech.utils.ExcelUtils;
-import it.lutech.utils.Utils;
 
 public class CreaCaso {
 	
@@ -56,6 +57,13 @@ public class CreaCaso {
 	private String telefonoReferente24S; 
 	
 	private String scegliFileS; 
+	
+	private AppProperties app;
+	
+	@Autowired
+	public void setApp(AppProperties app) {
+		this.app = app;
+	}		
 	
 	@Test
 	public void casiMultipli(){
@@ -151,7 +159,7 @@ public class CreaCaso {
 			e.printStackTrace();
 		}
 		
-		driver.get(Utils.readProperties("linkCreaCaso"));
+		driver.get(app.getLinkCreaCaso());
 		FormPage fp = PageFactory.initElements(driver, FormPage.class);
 		CasoCreatoPage ccp = PageFactory.initElements(driver, CasoCreatoPage.class);
 //		String servizio = fp.getServizioS(servizioS);

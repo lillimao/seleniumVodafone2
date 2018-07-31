@@ -12,7 +12,7 @@ public class Utils {
 		Properties prop = new Properties();
 		
 		try {
-			InputStream input = new FileInputStream("/home/lisa/vodafone_selenium/vodafone-selenium-form/src/main/resources/varie.properties");
+			InputStream input = new FileInputStream("xxxxx/home/lisa/vodafone_selenium/vodafone-selenium-form/src/main/resources/varie.properties");
 			prop.load(input);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +16,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import it.lutech.pages.CasoCreatoPage;
 import it.lutech.pages.FormPage;
 import it.lutech.pages.LoginPage;
+import it.lutech.utils.AppProperties;
 import it.lutech.utils.DriverUtils;
 import it.lutech.utils.ExcelUtils;
-import it.lutech.utils.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -80,6 +76,12 @@ public class UploadController {
 	
 	private String scegliFileS; 
 
+	private AppProperties app;
+	
+	@Autowired
+	public void setApp(AppProperties app) {
+		this.app = app;
+	}		
 
     @GetMapping("/upload")
     public String index() {
@@ -91,6 +93,11 @@ public class UploadController {
         return "uploadStatus";
     }
     
+//    @GetMapping("/createdCases")
+//    public String createdCases() {
+//        return "createdCases";
+//    }    
+
     @PostMapping("/upload") // //new annotation since 4.3
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes, Model model) {
@@ -104,6 +111,7 @@ public class UploadController {
         	
         	excelUtils = new ExcelUtils();
         	excelUtils.creaWorkbook(convert(file));
+        	excelUtils.setApp(app);
         	login();
         	casiMultipli(model);
         	
@@ -126,7 +134,7 @@ public class UploadController {
             e.printStackTrace();
         }
 //        redirectAttributes.addFlashAttribute("message", "Upload terminato");
-        return "/createdCases";
+        return "createdCases";
     }
     
     public void login(){
@@ -135,7 +143,7 @@ public class UploadController {
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		lp.compilaUserName();
+		lp.compilaUserName(app.getUsername());
 		js.executeScript("document.getElementById('pw').setAttribute('value', 'Vodafone05');"); //compila password
 		js.executeScript("document.getElementsByClassName('button small-button loginFormSubmit')[0].click();"); //click su "invia"
 		
@@ -229,6 +237,7 @@ public class UploadController {
 
 	public String creaCaso(){
 		String numCaso = "";
+		String stato = "";
 		Map<String, String> hmapSingle = null;
 		try {
 			Thread.sleep(5000);
@@ -236,7 +245,7 @@ public class UploadController {
 			e.printStackTrace();
 		}
 		
-		driver.get(Utils.readProperties("linkCreaCaso"));
+		driver.get(app.getLinkCreaCaso());
 		FormPage fp = PageFactory.initElements(driver, FormPage.class);
 		CasoCreatoPage ccp = PageFactory.initElements(driver, CasoCreatoPage.class);
 //		String servizio = fp.getServizioS(servizioS);
@@ -295,9 +304,11 @@ public class UploadController {
 				e.printStackTrace();
 			}
 			fp.clickUploadFile();
-//			fp.clickConfermaInserimento();  
-//			numCaso = ccp.numeroCaso();
-			numCaso = ""+Math.random();
+			fp.clickConfermaInserimento();  
+			numCaso = ccp.numeroCaso();
+			stato = ccp.stato();
+//			stato = "prova";
+//			numCaso = ""+Math.random();
 			if(numCaso.equals("")){
 				JavascriptExecutor js = (JavascriptExecutor)driver;	
 				js.executeScript("alert('Il caso non è stato generato');");
@@ -310,12 +321,13 @@ public class UploadController {
 				return "";
 			}
 			hmapSingle = new HashMap<String, String>(); 
+			hmapSingle.put("servizioS", servizioS);
 			hmapSingle.put("problemaS", problemaS);
 //			hmapSingle.put("consistenzaS", consistenzaS);
 //			hmapSingle.put("sedeS", sedeS);
 			hmapSingle.put("orarioReperibilitaS", orarioReperibilitaS);
 			hmapSingle.put("reperibilitaFestiviS", reperibilitaFestiviS);
-			hmapSingle.put("idCircuitoS", idCircuitoS);
+			hmapSingle.put("descrizioneS", idCircuitoS);
 			hmapSingle.put("ticketClienteS", ticketClienteS);
 			hmapSingle.put("commentoS", commentoS);
 			hmapSingle.put("nomeReferente24S", nomeReferente24S);
@@ -328,6 +340,7 @@ public class UploadController {
 			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
 			hmapSingle.put("scegliFileS", scegliFileS);
 			hmapSingle.put("numCaso", numCaso);
+			hmapSingle.put("statoS", stato);
 			hmapAll.put(numCaso, hmapSingle);
 			
 			return numCaso;
@@ -376,9 +389,10 @@ public class UploadController {
 				e.printStackTrace();
 			}
 			fp.uploadFile(scegliFileS);
-//			fp.clickConfermaInserimento(); 
-//			numCaso = ccp.numeroCaso();
-			numCaso = ""+Math.random();
+			fp.clickConfermaInserimento(); 
+			numCaso = ccp.numeroCaso();
+			stato = ccp.stato();
+//			numCaso = ""+Math.random();
 			if(numCaso.equals("")){
 				JavascriptExecutor js = (JavascriptExecutor)driver;	
 				js.executeScript("alert('Il caso non è stato generato');");
@@ -391,12 +405,13 @@ public class UploadController {
 				return "";
 			}
 			hmapSingle = new HashMap<String, String>(); 
+			hmapSingle.put("servizioS", servizioS);
 			hmapSingle.put("problemaS", problemaS);
 //			hmapSingle.put("consistenzaS", consistenzaS);
 //			hmapSingle.put("sedeS", sedeS);
 			hmapSingle.put("orarioReperibilitaS", orarioReperibilitaS);
 			hmapSingle.put("reperibilitaFestiviS", reperibilitaFestiviS);
-			hmapSingle.put("idCircuitoS", idCircuitoS);
+			hmapSingle.put("descrizioneS", idCircuitoS);
 			hmapSingle.put("ticketClienteS", ticketClienteS);
 			hmapSingle.put("commentoS", commentoS);
 			hmapSingle.put("nomeReferente24S", nomeReferente24S);
@@ -409,6 +424,7 @@ public class UploadController {
 			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
 			hmapSingle.put("scegliFileS", scegliFileS);
 			hmapSingle.put("numCaso", numCaso);
+			hmapSingle.put("statoS", stato);
 			hmapAll.put(numCaso, hmapSingle);
 			return numCaso;
 /******/	case "SDH/WDM - Punto Punto":
@@ -478,14 +494,15 @@ public class UploadController {
 			
 			fp.clickUploadFile();
 //			fp.uploadFile(scegliFileS);
-//			fp.clickConfermaInserimento();   
+			fp.clickConfermaInserimento();   
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-//			numCaso = ccp.numeroCaso();
-			numCaso = ""+Math.random();
+			numCaso = ccp.numeroCaso();
+			stato = ccp.stato();
+//			numCaso = ""+Math.random();
 			if(numCaso.equals("")){
 				JavascriptExecutor js = (JavascriptExecutor)driver;	
 				js.executeScript("alert('Il caso non è stato generato');");
@@ -498,12 +515,13 @@ public class UploadController {
 				return "";
 			}
 			hmapSingle = new HashMap<String, String>(); 
+			hmapSingle.put("servizioS", servizioS);
 			hmapSingle.put("problemaS", problemaS);
 			hmapSingle.put("consistenzaS", consistenzaS);
 			hmapSingle.put("sedeS", sedeS);
 			hmapSingle.put("orarioReperibilitaS", orarioReperibilitaS);
 			hmapSingle.put("reperibilitaFestiviS", reperibilitaFestiviS);
-			hmapSingle.put("idCircuitoS", idCircuitoS);
+			hmapSingle.put("descrizioneS", idCircuitoS);
 			hmapSingle.put("ticketClienteS", ticketClienteS);
 			hmapSingle.put("commentoS", commentoS);
 			hmapSingle.put("nomeReferente24S", nomeReferente24S);
@@ -516,6 +534,7 @@ public class UploadController {
 			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
 			hmapSingle.put("scegliFileS", scegliFileS);
 			hmapSingle.put("numCaso", numCaso);
+			hmapSingle.put("statoS", stato);
 			hmapAll.put(numCaso, hmapSingle);
 			return numCaso;
 		}

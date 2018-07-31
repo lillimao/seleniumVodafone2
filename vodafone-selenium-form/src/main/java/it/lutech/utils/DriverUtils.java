@@ -1,5 +1,6 @@
 package it.lutech.utils;
 
+import java.lang.ref.PhantomReference;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;

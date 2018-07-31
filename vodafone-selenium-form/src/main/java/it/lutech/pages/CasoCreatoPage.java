@@ -10,6 +10,7 @@ public class CasoCreatoPage {
 //	@FindBy(className="pageDescription")
 //	private WebElement numeroCaso;
 	
+//	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id43")
 	@FindBy(xpath="/html/body/div/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[1]/td[1]")
 	private WebElement numeroCaso;
 	
@@ -22,13 +23,14 @@ public class CasoCreatoPage {
 	@FindBy(id="")    //TODO
 	private WebElement consistenza;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[3]/td[2]")
+	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id53")
 	private WebElement servizio;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id56")
 	private WebElement codiceChiusura;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[6]/td[1]")
+//	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[6]/td[1]")
+	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id61")
 	private WebElement stato;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id44")
@@ -52,7 +54,7 @@ public class CasoCreatoPage {
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id62")
 	private WebElement causaEffettiva;
 	
-	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[2]/div[2]/table/tbody/tr[1]/td")
+	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id71")
 	private WebElement descrizione;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id72")

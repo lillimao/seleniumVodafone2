@@ -14,18 +14,26 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ExcelUtils {
 
-	public static final String VODAFONEFILE = "/home/lisa/vodafone_selenium/vodafone-selenium-form/src/main/resources/excelVodafone.xlsx";
+	public static final String VODAFONEFILE = "excelVodafone.xlsx";
 
 	public Workbook workbook = null;
+	
+	private AppProperties app;
+	
+	@Autowired
+	public void setApp(AppProperties app) {
+		this.app = app;
+	}	
 
 	public Workbook creaWorkbook(){
 		if(workbook == null){
 			// Creating a Workbook from an Excel file (.xls or .xlsx)
 			try {
-				workbook = WorkbookFactory.create(new File(VODAFONEFILE));
+				workbook = WorkbookFactory.create(new File(app.getFileUploadDir()+VODAFONEFILE));
 			} catch (InvalidFormatException | IOException e) {
 				e.printStackTrace();
 			}
@@ -58,10 +66,10 @@ public class ExcelUtils {
 		cell.setCellValue(valore);
 		
 		try {
-			FileOutputStream fileOut = new FileOutputStream("excelVodafoneOutPut.xlsx");
+			FileOutputStream fileOut = new FileOutputStream(app.getFileDownloadDir()+"excelVodafoneOutPut.xlsx");
 			workbook.write(fileOut);
 			fileOut.close();
-			workbook = WorkbookFactory.create(new FileInputStream("excelVodafoneOutPut.xlsx"));
+			workbook = WorkbookFactory.create(new FileInputStream(app.getFileDownloadDir()+"excelVodafoneOutPut.xlsx"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

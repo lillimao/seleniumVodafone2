@@ -12,7 +12,7 @@ else
     echo "can't determine OS"
     exit 1
 fi
-curl -s -L "$url" | tar -xz
+curl -s -L "$url" | tar -xz	
 chmod +x geckodriver
 sudo mv geckodriver "$install_dir"
 echo "installed geckodriver binary in $install_dir"

@@ -2,23 +2,26 @@ package azioni;
 
 import org.testng.annotations.Test;
 
-import java.util.Properties;
-
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import it.lutech.pages.CasoCreatoPage;
 import it.lutech.pages.HomePage;
+import it.lutech.utils.AppProperties;
 import it.lutech.utils.DriverUtils;
-import it.lutech.utils.Utils;
 
 public class Cerca {
 	
 	private WebDriver driver;
 	private CasoCreatoPage ccp;
 	
+	private AppProperties app;
+	
+	@Autowired
+	public void setApp(AppProperties app) {
+		this.app = app;
+	}	
 	
 	@Test
 	public void cercaCaso(){
@@ -29,7 +32,7 @@ public class Cerca {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		driver.get(Utils.readProperties("linkHomePage")); //va direttamente alla homepage
+		driver.get(app.getLinkHomePage()); //va direttamente alla homepage
 		HomePage hm = PageFactory.initElements(driver, HomePage.class);
 		hm.compilaCerca();
 		hm.clickVai();

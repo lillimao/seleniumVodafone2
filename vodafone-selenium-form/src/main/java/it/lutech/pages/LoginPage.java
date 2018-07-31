@@ -7,11 +7,9 @@ import javax.xml.ws.WebEndpoint;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import it.lutech.utils.Utils;
+import it.lutech.utils.AppProperties;
 
 public class LoginPage {
-	
-	Properties prop = new Properties();
 	
 	//** ELEMENTI **//
 	
@@ -21,18 +19,18 @@ public class LoginPage {
 	@FindBy(name="pw")
 	private WebElement password;
 
-	@FindBy(className="button small-button loginFormSubmit")
+	@FindBy(className="button small-button proploginFormSubmit")
 	private WebElement invia;
 	
 	//** METODI **//
 	
-	public void compilaUserName(){
+	public void compilaUserName(String user){
 		try {
-			username.sendKeys(Utils.readProperties("username"));
+			username.sendKeys(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	
 }

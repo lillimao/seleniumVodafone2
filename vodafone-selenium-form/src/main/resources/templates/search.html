@@ -1,28 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<script src="webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" /> 
-<body style="margin-left: 2%; margin-top: 2%; margin-right: 2%"; >
 
-<h1>Ricerca caso</h1>
-<div th:if="${message}">
-    <h2 th:text="${message}"/>
-</div>
-<!--<form method="POST" action="/search" enctype="multipart/form-data">
-    <input type="text" name="caseId" /><br/><br/>
-    <input type="submit" value="Submit" />
-</form>-->
+<head>
+	<title>POC Vodafone</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+	<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
 
-<form method="POST" action="/search" enctype="multipart/form-data" style="margin-top: 4%;" >
-	<div class="form-group">
-		<input type="text" class="form-control" id="email_id" name="caseId" placeholder="Numero Caso">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">HOME</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">    
+		<h1 class="mt-5">Ricerca caso</h1>
+		<div th:if="${message}">
+		    <h2 th:text="${message}"/>
+		</div>
+		<form method="POST" action="/search" enctype="multipart/form-data" style="margin-top: 4%;" >
+			<div class="form-group">
+				<input type="text" class="form-control" id="email_id" name="caseId" placeholder="Numero Caso">
+			</div>
+			
+			<div class="form-group"> <!-- Submit button !-->
+				<button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+			</div>	
+		</form>
+	    <!-- Bootstrap core JavaScript -->
+	    <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
+	    <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		</div>
+	  </div>
 	</div>
-	
-	<div class="form-group"> <!-- Submit button !-->
-		<button type="submit" value="Submit" class="btn btn-primary">Submit</button>
-	</div>	
-</form>
-
 </body>
 </html>

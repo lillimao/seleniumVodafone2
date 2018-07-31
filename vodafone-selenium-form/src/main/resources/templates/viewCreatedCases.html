@@ -34,9 +34,8 @@
 		<h1 class="mt-5">Casi Creati</h1>
 		<div class="w3-container" th:each="map : ${hmapAll.entrySet()}">
 		
-		<!-- <button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align" th:text="${map.key}"></button> -->
-		<input type="button" th:onclick="'javascript:myFunction(\'' + ${map.key} + '\');'" class="w3-btn w3-block w3-black w3-left-align" th:value="${map.key}" />
-		<div th:id="${map.key}" class="w3-container w3-hide" >
+		<button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align" th:text="${map.key}"></button>
+		<div id="Demo1" class="w3-container w3-hide" >
 		
 		
 		<table class="table" style="margin-top: 3%">
@@ -45,43 +44,40 @@
 		  <tbody>
 		  <tr>
 		  <td><b>Numero Caso</b></td>
-		  <td><b>Servizio</b></td>
-		  <td><b>Stato</b></td>
-		  <td><b>Descrizione</b></td>
-		  <td><b>Commento</b></td>
-		  <!-- <td>Problema</td>
+		  <td>Problema</td>
 		  <td>Orario reperibilità</td>
 		  <td>ID circuito</td>
 		  <td>Ticket cliente</td>
 		  <td>Commento</td>
-		  <td>Reperibilità festivi</td> -->
-		  <td><b>Referente 24h</b></td>
-		 <!-- <td>Email referente 24h</td>
-		  <td>Telefono referente 24h</td>-->
-		  <td><b>Referente</b></td>
-		 <!-- <td>Email referente</td>
+		  <td>Reperibilità festivi</td>
+		  <td>Nome referente 24h</td>
+		  <td>Cognome referente 24h</td>
+		  <td>Email referente 24h</td>
+		  <td>Telefono referente 24h</td>
+		  <td>Nome referente</td>
+		  <td>Cognome referente</td>
+		  <td>Email referente</td>
 		  <td>Telefono referente</td>
-		  <!--<td>File upload</td> -->
+		  <td>File upload</td>
 		  </tr>
 		  
 		   <tr>
 		         <td> <span th:text="${map.value.numCaso}"></span></a> </td>
-		         <td> <span th:text="${map.value.servizioS}"></span></a> </td>
-		         <td> <span th:text="${map.value.statoS}"></span></a> </td>
-		         <td> <span th:text="${map.value.descrizioneS}"></span></a> </td>
-		         <!-- <td> <span th:text="${map.value.problemaS}"></span> </td>
+		         <td> <span th:text="${map.value.problemaS}"></span> </td>
 		         <td> <span th:text="${map.value.orarioReperibilitaS}"></span> </td>
 		     	 <td> <span th:text="${map.value.idCircuitoS}"></span> </td>
-		         <td> <span th:text="${map.value.ticketClienteS}"></span> </td>-->
+		         <td> <span th:text="${map.value.ticketClienteS}"></span> </td>
 		         <td> <span th:text="${map.value.commentoS}"></span> </td>
-		         <!--<td> <span th:text="${map.value.reperibilitaFestiviS}"></span> </td> -->
-		         <td> <span th:text="${map.value.nomeReferente24S}"></span> <span th:text="${map.value.cognomeReferente24S}"></span> </td>
-		          <!--<td> <span th:text="${map.value.emailReferente24S}"></span> </td>
-		         <td> <span th:text="${map.value.telefonoReferente24S}"></span> </td>-->
-		         <td> <span th:text="${map.value.nomeReferenteS}"></span> <span th:text="${map.value.cognomeReferenteS}"></span> </td>
-		        <!-- <td> <span th:text="${map.value.emailReferenteS}"></span> </td>
+		         <td> <span th:text="${map.value.reperibilitaFestiviS}"></span> </td>
+		         <td> <span th:text="${map.value.nomeReferente24S}"></span> </td>
+		         <td> <span th:text="${map.value.cognomeReferente24S}"></span> </td>
+		         <td> <span th:text="${map.value.emailReferente24S}"></span> </td>
+		         <td> <span th:text="${map.value.telefonoReferente24S}"></span> </td>
+		         <td> <span th:text="${map.value.nomeReferenteS}"></span> </td>
+		         <td> <span th:text="${map.value.cognomeReferenteS}"></span> </td>
+		         <td> <span th:text="${map.value.emailReferenteS}"></span> </td>
 		         <td> <span th:text="${map.value.telefonoReferenteS}"></span> </td>
-		         <td> <span th:text="${map.value.scegliFileS}"></span> </td>-->
+		         <td> <span th:text="${map.value.scegliFileS}"></span> </td>
 		</tr> 
 		  </tbody>
 		</table>
