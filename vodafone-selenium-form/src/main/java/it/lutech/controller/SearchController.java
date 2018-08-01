@@ -95,6 +95,7 @@ public class SearchController {
 		login();
 		for(int i = 0; i < excelUtils.numeroRighe(); i++){
 			String caso = excelUtils.stampaCelle(i+2, 18);
+			if(caso != null && !caso.isEmpty()){
 			cercaCaso(caso);
 			ccp = PageFactory.initElements(driver, CasoCreatoPage.class);
 			Map<String, String> hmapSingle = new HashMap<String, String>();
@@ -113,17 +114,18 @@ public class SearchController {
 			hmapSingle.put("servizioS", ccp.servizio());
 			hmapSingle.put("statoS", ccp.stato());
 			hmapSingle.put("descrizioneS", ccp.descrizione());
-			hmapSingle.put("nomeReferente24S", nomeReferente24S);
-			hmapSingle.put("cognomeReferente24S", cognomeReferente24S);
+			hmapSingle.put("nomeReferente24S", ccp.nomeReferente());
+			hmapSingle.put("cognomeReferente24S", ccp.cognomeReferente());
 //			hmapSingle.put("emailReferente24S", emailReferente24S);
 //			hmapSingle.put("telefonoReferente24S", telefonoReferente24S);
-			hmapSingle.put("nomeReferenteS", nomeReferenteS);
-			hmapSingle.put("cognomeReferenteS", cognomeReferenteS);
+//			hmapSingle.put("nomeReferenteS", nomeReferenteS);
+//			hmapSingle.put("cognomeReferenteS", cognomeReferenteS);
 //			hmapSingle.put("emailReferenteS", emailReferenteS);
 //			hmapSingle.put("telefonoReferenteS", telefonoReferenteS);
 //			hmapSingle.put("scegliFileS", scegliFileS);
 			hmapSingle.put("numCaso", ccp.numeroCaso());
 	    	hmapAll.put(ccp.numeroCaso(), hmapSingle);
+			}
 		}
 		modelGet.addAttribute("hmapAll", hmapAll);
     	return "createdCases";
@@ -136,6 +138,7 @@ public class SearchController {
     		return "redirect:uploadStatus"; //TODO
     	}
     	login();
+    	System.out.println("Login End");
     	cercaCaso(caseId);
     	ccp = PageFactory.initElements(driver, CasoCreatoPage.class);
     	if(ccp.numeroCaso().equals("")){
@@ -178,7 +181,7 @@ public class SearchController {
 		try {
 			driver = DriverUtils.getDriver();
 			try {
-				Thread.sleep(2500);
+				Thread.sleep(5000);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

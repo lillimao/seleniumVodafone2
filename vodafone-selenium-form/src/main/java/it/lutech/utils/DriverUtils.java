@@ -27,10 +27,10 @@ public class DriverUtils {
 	public static void initializeFirefox(){
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(URLFASTWEB);
-		driver.manage().window().maximize();
-		Dimension d = new Dimension(0,0);
-		driver.manage().window().setSize(d);
-		driver.manage().window().setPosition(new Point(-2000, -2000));
+//		driver.manage().window().maximize();
+//		Dimension d = new Dimension(0,0);
+//		driver.manage().window().setSize(d);
+//		driver.manage().window().setPosition(new Point(-2000, -2000));
 	}
 
 }

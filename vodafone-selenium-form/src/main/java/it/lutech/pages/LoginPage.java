@@ -26,6 +26,7 @@ public class LoginPage {
 	
 	public void compilaUserName(String user){
 		try {
+			username.clear();
 			username.sendKeys(user);
 		} catch (Exception e) {
 			e.printStackTrace();
