@@ -144,7 +144,7 @@ public class UploadController {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		lp.compilaUserName(app.getUsername());
-		js.executeScript("document.getElementById('pw').setAttribute('value', 'Vodafone05');"); //compila password
+		js.executeScript("document.getElementById('pw').setAttribute('value', 'Vodafone06');"); //compila password
 		js.executeScript("document.getElementsByClassName('button small-button loginFormSubmit')[0].click();"); //click su "invia"
 		
 	}

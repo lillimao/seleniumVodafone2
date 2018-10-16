@@ -23,14 +23,14 @@ public class CasoCreatoPage {
 	@FindBy(id="")    //TODO
 	private WebElement consistenza;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id53")
+	@FindBy(id="j_id0:j_id29:j_id45:j_id48:j_id59")
 	private WebElement servizio;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id56")
 	private WebElement codiceChiusura;
 	
 //	@FindBy(xpath="/html/body/div[1]/div/div[3]/table/tbody/tr/td[2]/form[1]/span[2]/div/div/div/div/div[2]/span/div[1]/div/table/tbody/tr[6]/td[1]")
-	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id61")
+	@FindBy(id="j_id0:j_id29:j_id45:j_id48:j_id67")
 	private WebElement stato;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id44")
@@ -54,7 +54,7 @@ public class CasoCreatoPage {
 	@FindBy(id="j_id0:j_id23:j_id39:j_id42:j_id62")
 	private WebElement causaEffettiva;
 	
-	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id71")
+	@FindBy(id="j_id0:j_id29:j_id45:j_id76:j_id77")
 	private WebElement descrizione;
 	
 	@FindBy(id="j_id0:j_id23:j_id39:j_id70:j_id72")

@@ -29,7 +29,7 @@ public class CaseListController {
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		lp.compilaUserName(app.getUsername());
-		js.executeScript("document.getElementById('pw').setAttribute('value', 'Vodafone05');"); //compila password
+		js.executeScript("document.getElementById('pw').setAttribute('value', 'Vodafone06');"); //compila password
 		js.executeScript("document.getElementsByClassName('button small-button loginFormSubmit')[0].click();"); //click su "invia"
 		
 	}

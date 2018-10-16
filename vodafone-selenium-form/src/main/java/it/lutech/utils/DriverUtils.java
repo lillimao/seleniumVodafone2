@@ -25,7 +25,7 @@ public class DriverUtils {
 	}
 	
 	public static void initializeFirefox(){
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(URLFASTWEB);
 //		driver.manage().window().maximize();
 //		Dimension d = new Dimension(0,0);

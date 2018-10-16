@@ -51,70 +51,70 @@ public class FormPage {
 	@FindBy(className = "/html/body/div/div/div[3]/table/tbody/tr/td[2]/form/div[1]/div/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr[2]/th/label")
 	private WebElement tipo;
 	
-	@FindBy(name="Page:myForm:j_id66:DF1:j_id100:j_id105")
+	@FindBy(name="Page:myForm:j_id65:DF1:j_id99:j_id104")
 	private WebElement servizio;
 	
-	@FindBy(name="Page:myForm:j_id66:DF1:contAsset:asset")
+	@FindBy(name="Page:myForm:j_id65:DF1:contAsset:asset")
 	private WebElement consistenza;
 	
-	@FindBy(id="Page:myForm:j_id66:DF1:contAsset:asset_lkwgt")
+	@FindBy(id="Page:myForm:j_id65:DF1:contAsset:asset_lkwgt")
 	private WebElement cercaConsistenza;
 	
-	@FindBy(id="/html/body/form/div[1]/div[2]/div[2]/div/div/div/div[1]/table/tbody/tr/td[1]/a")
+	@FindBy(xpath="/html/body/form/div[1]/div[2]/div[2]/div/div/div/div[1]/table/tbody/tr/td[1]/a")
 	private WebElement giustaConsistenza;
 	
-	@FindBy(name="Page:myForm:j_id66:DF1:j_id133:j_id137")
+	@FindBy(name="Page:myForm:j_id65:DF1:j_id132:j_id136")
 	private WebElement sede;
 
-	@FindBy(name="Page:myForm:j_id66:DF1:problemCase:problema")
+	@FindBy(name="Page:myForm:j_id65:DF1:problemCase:problema")
 	private WebElement problema;
 	
-	@FindBy(name="Page:myForm:j_id66:DF1:OrariUfficio:j_id150")
+	@FindBy(name="Page:myForm:j_id65:DF1:OrariUfficio:j_id149")
 	private WebElement orarioReperibilità;
 	
-	@FindBy(name="Page:myForm:j_id66:DF1:j_id154:j_id159")
+	@FindBy(name="Page:myForm:j_id65:DF1:j_id153:j_id158")
 	private WebElement reperibilitaFestivi;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id166:descrizioneItem:descrizioneField")
+	@FindBy(name="Page:myForm:j_id65:j_id165:descrizioneItem:descrizioneField")
 	private WebElement idCircuito;
 
-	@FindBy(name="Page:myForm:j_id66:j_id166:j_id173")
+	@FindBy(name="Page:myForm:j_id65:j_id165:j_id172")
 	private WebElement ticketCliente;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id166:j_id174")
+	@FindBy(name="Page:myForm:j_id65:j_id165:j_id173")
 	private WebElement commento;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id175:j_id176")
+	@FindBy(name="Page:myForm:j_id65:j_id174:j_id175")
 	private WebElement nomeReferente;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id175:j_id177")
+	@FindBy(name="Page:myForm:j_id65:j_id174:j_id176")
 	private WebElement cognomeReferente;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id175:j_id178")
+	@FindBy(name="Page:myForm:j_id65:j_id174:j_id177")
 	private WebElement emailReferente;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id175:j_id179")
+	@FindBy(name="Page:myForm:j_id65:j_id174:j_id178")
 	private WebElement telefonoReferente;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id180:j_id181:j_id185")
+	@FindBy(name="Page:myForm:j_id65:j_id179:j_id180:j_id184")
 	private WebElement nomeReferente24;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id180:j_id188:j_id192")
+	@FindBy(name="Page:myForm:j_id65:j_id179:j_id187:j_id191")
 	private WebElement cognomeReferente24;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id180:j_id195:j_id199")
+	@FindBy(name="Page:myForm:j_id65:j_id179:j_id194:j_id198")
 	private WebElement emailReferente24;
 	
-	@FindBy(name="Page:myForm:j_id66:j_id180:j_id202:j_id206")
+	@FindBy(name="Page:myForm:j_id65:j_id179:j_id201:j_id205")
 	private WebElement telefonoReferente24;
 	
-	@FindBy(name="Page:myForm:j_id66:allegato:allegaFile:file:inputFile:file")
+	@FindBy(name="Page:myForm:j_id65:allegato:allegaFile:file:inputFile:file")
 	private WebElement scegliFile;
 	
-	@FindBy(name="Page:myForm:j_id66:allegato:allegaFile:j_id216")
+	@FindBy(name="Page:myForm:j_id65:allegato:allegaFile:j_id215")
 	private WebElement uploadFile;
 
-	@FindBy(name="Page:myForm:j_id66:buttons:bottom:save")
+	@FindBy(name="Page:myForm:j_id65:buttons:bottom:save")
 	private WebElement confermaInserimento;
 	
 	//** METODI **//

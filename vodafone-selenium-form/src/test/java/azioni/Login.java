@@ -35,7 +35,7 @@ public class Login {
 		driver.findElement(By.name("un")).clear();
 		driver.findElement(By.name("un")).sendKeys("governance.nmcpm@mail.vodafone.it");
 		driver.findElement(By.name("pw")).clear();
-		driver.findElement(By.name("pw")).sendKeys("Vodafone05");		
+		driver.findElement(By.name("pw")).sendKeys("Vodafone06");		
 		//lp.compilaUserName(app.getUsername()); //non funziona su centos!?
 //		js.executeScript("document.getElementById('un').setAttribute('value', 'governance.nmcpm@mail.vodafone.it');"); //compila username
 //		js.executeScript("document.getElementById('pw').setAttribute('value', 'Vodafone05');"); //compila password
